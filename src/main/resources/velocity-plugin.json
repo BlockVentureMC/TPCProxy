@@ -1,0 +1,10 @@
+{
+  "id": "tpc-proxy",
+  "name": "TPC Proxy",
+  "main": "de.themeparkcraft.proxy.ProxyPlugin",
+  "version": "1.0",
+  "description": "The TPC proxy plugin",
+  "authors": [
+    "Liam Sage"
+  ]
+}
