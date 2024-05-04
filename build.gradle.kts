@@ -1,5 +1,4 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val fruxzAscendVersion: String by project
 val fruxzStackedVersion: String by project
@@ -58,6 +57,14 @@ kotlin {
     compilerOptions {
         jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
         apiVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_0)
-        freeCompilerArgs.addAll(listOf("-opt-in=kotlin.RequiresOptIn", "-Xopt-in=dev.kord.common.annotation.KordPreview", "-Xopt-in=dev.kord.common.annotation.KordExperimental", "-Xopt-in=kotlin.time.ExperimentalTime", "-Xopt-in=kotlin.contracts.ExperimentalContracts"))
+        freeCompilerArgs.addAll(
+            listOf(
+                "-opt-in=kotlin.RequiresOptIn",
+                "-Xopt-in=dev.kord.common.annotation.KordPreview",
+                "-Xopt-in=dev.kord.common.annotation.KordExperimental",
+                "-Xopt-in=kotlin.time.ExperimentalTime",
+                "-Xopt-in=kotlin.contracts.ExperimentalContracts"
+            )
+        )
     }
 }
