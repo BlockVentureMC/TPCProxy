@@ -6,6 +6,7 @@ import com.velocitypowered.api.event.proxy.ProxyInitializeEvent
 import com.velocitypowered.api.event.proxy.ProxyShutdownEvent
 import com.velocitypowered.api.plugin.Plugin
 import com.velocitypowered.api.proxy.ProxyServer
+import de.themeparkcraft.proxy.commands.BroadcastCommand
 import de.themeparkcraft.proxy.commands.HubCommand
 import de.themeparkcraft.proxy.listener.PingListener
 import org.slf4j.Logger
@@ -21,6 +22,8 @@ class ProxyPlugin @Inject constructor(val server: ProxyServer, private val logge
 
     companion object {
         lateinit var instance: ProxyPlugin
+        val PREFIX: String =
+            "<gradient:#f6e58d:#ffda79>ThemeParkCraft</gradient> <color:#576574>•</color> <color:#c8d6e5>"
     }
 
     init {
@@ -35,8 +38,19 @@ class ProxyPlugin @Inject constructor(val server: ProxyServer, private val logge
         val eventManager = server.eventManager
 
         commandManager.register(
-            commandManager.metaBuilder("hub").aliases("lobby", "l", "h").build(),
+            commandManager
+                .metaBuilder("hub")
+                .aliases("lobby", "l", "h")
+                .build(),
             HubCommand(server)
+        )
+
+        commandManager.register(
+            commandManager
+                .metaBuilder("broadcast")
+                .aliases("bc")
+                .build(),
+            BroadcastCommand(server)
         )
 
         eventManager.register(this, PingListener())
